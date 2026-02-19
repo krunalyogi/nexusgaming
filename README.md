@@ -12,7 +12,7 @@ A comprehensive gaming commerce platform featuring a sleek, dark-themed frontend
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: Next.js, React, Tailwind CSS, Framer Motion, Zustand.
+- **Frontend**: Next.js, React, Tailwind CSS, Framer Motion, Zustant.
 - **Backend**: Node.js, Express, MongoDB, Socket.io.
 - **Authentication**: JWT-based secure auth system.
 
@@ -52,3 +52,4 @@ A comprehensive gaming commerce platform featuring a sleek, dark-themed frontend
 
 ---
 *Developed as a premium gaming experience.*
+
