@@ -13,7 +13,7 @@ export default function FriendsPage() {
     const [tab, setTab] = useState('friends');
 
     useEffect(() => {
-        friendsAPI.getFriends().then(r => setFriends(r.data.friends || [])).catch(console.error);
+        friendsAPI.getAll().then(r => setFriends(r.data.friends || [])).catch(console.error);
         friendsAPI.getRequests().then(r => setRequests(r.data.requests || [])).catch(console.error);
     }, []);
 
@@ -83,8 +83,8 @@ export default function FriendsPage() {
                                 <img src={r.sender?.avatar} alt="" className="h-10 w-10 rounded-full" />
                                 <div className="flex-1"><h3 className="text-sm font-semibold">{r.sender?.username}</h3><p className="text-xs text-[var(--text-muted)]">Wants to be friends</p></div>
                                 <div className="flex gap-2">
-                                    <button onClick={() => { friendsAPI.respond(r._id, 'accepted'); setRequests(rs => rs.filter(x => x._id !== r._id)); toast.success('Accepted!'); }} className="btn-primary text-xs py-1.5 px-3">Accept</button>
-                                    <button onClick={() => { friendsAPI.respond(r._id, 'declined'); setRequests(rs => rs.filter(x => x._id !== r._id)); }} className="btn-ghost text-xs py-1.5 px-3">Decline</button>
+                                    <button onClick={() => { friendsAPI.accept(r._id).then(() => { setRequests(rs => rs.filter(x => x._id !== r._id)); toast.success('Accepted!'); }); }} className="btn-primary text-xs py-1.5 px-3">Accept</button>
+                                    <button onClick={() => { friendsAPI.decline(r._id).then(() => { setRequests(rs => rs.filter(x => x._id !== r._id)); }); }} className="btn-ghost text-xs py-1.5 px-3">Decline</button>
                                 </div>
                             </div>
                         ))}

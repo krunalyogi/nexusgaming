@@ -14,11 +14,11 @@ export default function ChatPage() {
     const [input, setInput] = useState('');
     const chatEnd = useRef<HTMLDivElement>(null);
 
-    useEffect(() => { friendsAPI.getFriends().then(r => setFriends(r.data.friends || [])).catch(console.error); }, []);
+    useEffect(() => { friendsAPI.getAll().then(r => setFriends(r.data.friends || [])).catch(console.error); }, []);
 
     useEffect(() => {
         if (!selected || !user) return;
-        chatAPI.getMessages(selected._id).then(r => setMessages(r.data.messages || [])).catch(console.error);
+        chatAPI.getHistory(selected._id).then(r => setMessages(r.data.messages || [])).catch(console.error);
     }, [selected, user]);
 
     useEffect(() => {
