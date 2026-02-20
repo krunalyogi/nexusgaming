@@ -1,11 +1,10 @@
-'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import GameCard from '@/components/GameCard';
 import { gamesAPI } from '@/lib/api';
 
-export default function StorePage() {
+function StoreContent() {
     const searchParams = useSearchParams();
     const [games, setGames] = useState<any[]>([]);
     const [search, setSearch] = useState(searchParams.get('search') || '');
@@ -95,5 +94,13 @@ export default function StorePage() {
                 </div>
             )}
         </div>
+    );
+}
+
+export default function StorePage() {
+    return (
+        <Suspense fallback={<div className="p-12 text-center text-[var(--text-muted)]">Loading Store...</div>}>
+            <StoreContent />
+        </Suspense>
     );
 }
