@@ -16,7 +16,7 @@ export default function WishlistPage() {
     }, []);
 
     const remove = async (gameId: string) => {
-        await libraryAPI.toggleWishlist(gameId);
+        await libraryAPI.removeFromWishlist(gameId);
         setGames(g => g.filter(x => x._id !== gameId));
         toast.success('Removed from wishlist');
     };
