@@ -8,7 +8,7 @@ export default function AchievementsPage() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        achievementsAPI.getMy().then(r => { setAchievements(r.data.achievements || []); setLoading(false); }).catch(() => setLoading(false));
+        achievementsAPI.getUserAchievements().then(r => { setAchievements(r.data.achievements || []); setLoading(false); }).catch(() => setLoading(false));
     }, []);
 
     const totalPoints = achievements.reduce((acc: number, a: any) => acc + (a.achievement?.points || 0), 0);
